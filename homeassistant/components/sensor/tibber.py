@@ -137,9 +137,9 @@ class TibberSensor(Entity):
         state = None
         max_price = None
         min_price = None
-        now = dt_util.utcnow()
+        now = dt_util.now()
         for key, price_total in self._tibber_home.price_total.items():
-            price_time = dt_util.as_utc(dt_util.parse_datetime(key))
+            price_time = dt_util.as_local(dt_util.parse_datetime(key))
             price_total = round(price_total, 3)
             time_diff = (now - price_time).total_seconds()/60
             if (not self._newest_data_timestamp or
