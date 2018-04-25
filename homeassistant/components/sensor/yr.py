@@ -50,6 +50,17 @@ SENSOR_TYPES = {
     'dewpointTemperature': ['Dewpoint temperature', '°C'],
 }
 
+YR_SYMBOLS = ["Clear Sky", "Fair", "Partly Cloudy", "Cloudy","Rain Showers", "Rain Showers And Thunder",
+              "Sleet Showers", "Snow Showers", "Rain", "Heavy Rain", "Heavy Rain And Thunder", "Sleet",
+              "Snow", "Snow And Thunder", "Fog", "0" ,"0" ,"0", "0", "Sleet Showers And Thunder",
+              "Snow Showers And Thunder", "Rain And Thunder", "Sleet And Thunder",
+              "Light Rain Showers And Thunder", "Heavy Rain Showers And Thunder", "Light Sleet Showers And Thunder",
+              "Heavy Sleet Showers And Thunder", "Light Snow Showers And Thunder", "Heavy Snow Showers And Thunder",
+              "Light Rain And Thunder", "Light Sleet And Thunder", "Heavy Sleet And Thunder", "Light Snow And Thunder",
+              "Heavy Snow And Thunder", "0", "0", "0", "0", "0", "Light Rain Showers", "Heavy Rain Showers",
+              "Light Sleet Showers", "Heavy Sleet Showers", "Light Snow Showers", "Heavy Snow Showers",
+              "Light Rain", "Light Sleet", "Heavy Sleet", "Light Snow", "Heavy Snow"]
+
 CONF_FORECAST = 'forecast'
 
 DEFAULT_FORECAST = 0
@@ -114,6 +125,8 @@ class YrSensor(Entity):
     @property
     def state(self):
         """Return the state of the device."""
+        if self.type == 'symbol' and float(self._state) < len(YR_SYMBOLS):
+            return YR_SYMBOLS[int(float(self._state))]
         return self._state
 
     @property
