@@ -1257,7 +1257,7 @@ thingspeak==0.4.1
 tikteck==0.4
 
 # homeassistant.components.calendar.todoist
-todoist-python==7.0.17
+todoist-python==8.1.3
 
 # homeassistant.components.toon
 toonlib==1.0.2
